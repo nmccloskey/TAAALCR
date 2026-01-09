@@ -1,6 +1,6 @@
-# DIAAD — Digital Interface for Aggregate Analysis of Dialog
+# TAAALCR — Toolkit for Aggregate Analysis and Alignment of Language in Conversation, for Research
 
-DIAAD is a small toolkit for batched dialog analysis that includes workflows for analyzing digital conversation turns and [POWERS](https://doi.org/10.3233/ACS-2013-20107) coding. It complements (and imports) the monologic discourse analysis system [RASCAL](https://github.com/nmccloskey/RASCAL). 
+TAAALCR is a small toolkit for batched dialog analysis that includes workflows for analyzing digital conversation turns and [POWERS](https://doi.org/10.3233/ACS-2013-20107) coding. It complements (and imports) the monologic discourse analysis system [RASCAL](https://github.com/nmccloskey/RASCAL). 
 
 ---
 
@@ -11,7 +11,7 @@ DIAAD is a small toolkit for batched dialog analysis that includes workflows for
    - Recording turns with a sequence of digits enables analysis of both tallies and transition probabilities (see below).
 - **POWERS Coding**
    - Profile of Word Errors and Retrieval in Speech (POWERS) is an aphasiological coding system for analyzing dialogic speech (Herbet, et al., 2013).
-   - DIAAD POWERS pipeline:
+   - TAAALCR POWERS pipeline:
       - generates coder workbooks, automating most fields
       - summarizes coding and reports ICC2 values between coders
       - evaluates and optionally reselects reliability coding
@@ -22,9 +22,9 @@ DIAAD is a small toolkit for batched dialog analysis that includes workflows for
 
 ## Web App
 
-You can use DIAAD in your browser — no installation required:
+You can use TAAALCR in your browser — no installation required:
 
-👉 [Launch the DIAAD Web App](https://diaad-dialog.streamlit.app/)
+👉 [Launch the TAAALCR Web App](https://taaalcr.streamlit.app/)
 
 ---
 
@@ -35,17 +35,17 @@ A dedicated virtual environment using Anaconda is recommended:
 ### 1. Create and activate your environment:
 
 ```bash
-conda create --name diaad python=3.12
-conda activate diaad
+conda create --name taaalcr python=3.12
+conda activate taaalcr
 ```
 
-### 2. Download DIAAD:
+### 2. Download TAAALCR:
 ```bash
 # directly from PyPI
-pip install diaad
+pip install taaalcr
 
 # or from GitHub
-pip install git+https://github.com/nmccloskey/diaad.git@main
+pip install git+https://github.com/nmccloskey/taaalcr.git@main
 ```
 
 ### 3. Install the `en_core_web_trf` model (for POWERS coding automation):
@@ -57,7 +57,7 @@ python -m spacy download en_core_web_trf
 
 ## Setup
 
-To prepare for running DIAAD, complete the following steps:
+To prepare for running TAAALCR, complete the following steps:
 
 ### 1. Create your working directory:
 
@@ -65,9 +65,9 @@ Example structure:
 ```
 your_project/
 ├── config.yaml           # Configuration file (see below)
-└── diaad_data/
+└── taaalcr_data/
     └── input/            # Place your .cha or .xlsx files here
-                          # (DIAAD will make an output directory)
+                          # (TAAALCR will make an output directory)
 ```
 
 ### 2. Provide a `config.yaml` file
@@ -77,8 +77,8 @@ This file specifies the directories, coders, settings, and tier structure.
 You can download the example config file from the repo or create your own like this:
 
 ```yaml
-input_dir: diaad_data/input
-output_dir: diaad_data/output
+input_dir: taaalcr_data/input
+output_dir: taaalcr_data/output
 reliability_fraction: 0.2
 automate_POWERS: true
 just_c2_POWERS: false
@@ -120,26 +120,26 @@ tiers:
 
 ## Quickstart — Command Line
 
-DIAAD exposes a concise CLI with subcommands:
+TAAALCR exposes a concise CLI with subcommands:
 
 ```bash
 # Analyze digital conversation turns
-diaad turns
+taaalcr turns
 
 # POWERS workflow
-diaad powers make       # prepare POWERS coding files
-diaad powers analyze    # analyze completed POWERS coding
-diaad powers evaluate   # evaluate completed POWERS reliability coding
-diaad powers reselect   # randomly reselect reliability subset
+taaalcr powers make       # prepare POWERS coding files
+taaalcr powers analyze    # analyze completed POWERS coding
+taaalcr powers evaluate   # evaluate completed POWERS reliability coding
+taaalcr powers reselect   # randomly reselect reliability subset
 
 # Automation validation
-diaad powers select     # randomly select subset for validating automation
-diaad powers validate   # compute reliability metrics on automated vs manual codes 
+taaalcr powers select     # randomly select subset for validating automation
+taaalcr powers validate   # compute reliability metrics on automated vs manual codes 
 ```
 ---
 # Digital Conversation Turns (DCT) Protocol
 
-DIAAD includes a lightweight system for analyzing **digital conversational turns** in group treatment sessions for people with aphasia.  
+TAAALCR includes a lightweight system for analyzing **digital conversational turns** in group treatment sessions for people with aphasia.  
 Instead of simple tallies, the DCT protocol records the **sequence of turns** compactly, enabling analysis of turn-taking dynamics and engagement, with optional markers for capturing turn qualities (e.g., length/substantiveness).
 
 ---
@@ -187,7 +187,7 @@ Marking system:
 ---
 
 ## Output
-The `diaad turns` command analyzes coded conversation turn files  and produces an Excel workbook with multiple sheets, capturing turn-taking behavior at **bin**, **speaker**, **session**, and **group** levels, also including **transition matrices** for a detailed view of conversational dynamics.
+The `taaalcr turns` command analyzes coded conversation turn files  and produces an Excel workbook with multiple sheets, capturing turn-taking behavior at **bin**, **speaker**, **session**, and **group** levels, also including **transition matrices** for a detailed view of conversational dynamics.
 
 | Excel Sheet              | Level of Analysis | Data Included                                                                 
 |---------------------------|------------------|-------------------------------------------------------------------------------|
@@ -233,7 +233,7 @@ The `diaad turns` command analyzes coded conversation turn files  and produces a
 
 ## Measures
 
-The POWERS coding system addresses the need to assess language abilities (particularly lexical retrieval) in conversation for people with aphasia. DIAAD facilitates quantification of the following subset of POWERS variables for both the clinician and client (see the [POWERS](https://doi.org/10.3233/ACS-2013-20107) manual for full details): 
+The POWERS coding system addresses the need to assess language abilities (particularly lexical retrieval) in conversation for people with aphasia. TAAALCR facilitates quantification of the following subset of POWERS variables for both the clinician and client (see the [POWERS](https://doi.org/10.3233/ACS-2013-20107) manual for full details): 
 
    - **filled pauses** - disfluencies like "um", "uh", "er", etc.
    - **speech units** - these more or less map onto non-punctuation tokens excluding filled pauses
@@ -247,7 +247,7 @@ The POWERS coding system addresses the need to assess language abilities (partic
 
 ## Automation (reliability details pending)
 
-DIAAD automates as much as possible. Below are descriptions of automatability and ICC2 utterance-level reliability metrics on a stratified (by study site, mild/severe aphasia profile, and pre-/post-tx test) random selection of XX samples (XX utterances).
+TAAALCR automates as much as possible. Below are descriptions of automatability and ICC2 utterance-level reliability metrics on a stratified (by study site, mild/severe aphasia profile, and pre-/post-tx test) random selection of XX samples (XX utterances).
    - **fully automated** with regex and spaCy (`en_core_web_trf`):
       - *filled pauses:*
       - *speech units:*
@@ -261,22 +261,22 @@ DIAAD automates as much as possible. Below are descriptions of automatability an
 ## Typical Workflow
 
 1. **Tabularize utterances (if needed)**  
-   If `*Utterances*.xlsx` files aren’t present, DIAAD will call RASCAL to read `.cha` files and tabularize utterances, assigning samples unique identifiers at the utterance and transcript levels.
+   If `*Utterances*.xlsx` files aren’t present, TAAALCR will call RASCAL to read `.cha` files and tabularize utterances, assigning samples unique identifiers at the utterance and transcript levels.
 
 2. **Prepare POWERS coding files**  
-   `diaad powers make` creates full dataset plus reliability coding workbooks, with most coding automated.
+   `taaalcr powers make` creates full dataset plus reliability coding workbooks, with most coding automated.
 
 3. **Human coding**  
    Coders complete POWERS annotations in the generated spreadsheets.
 
 4. **Analyze**  
-   `diaad powers analyze` aggregates and reports POWERS metrics at the turn, speaker, and dialog levels.
+   `taaalcr powers analyze` aggregates and reports POWERS metrics at the turn, speaker, and dialog levels.
 
 5. **Reliability evaluation**  
-   `diaad powers evaulate` matches reliability files and runs ICC2 evaluation.
+   `taaalcr powers evaulate` matches reliability files and runs ICC2 evaluation.
 
 6. **Reliability subset (optional)**  
-   `diaad powers reselect` eselects reliability coding subset if ICC2 measures fail to meet threshold (0.7 a typical minimum).
+   `taaalcr powers reselect` eselects reliability coding subset if ICC2 measures fail to meet threshold (0.7 a typical minimum).
 
 ### Pipeline Commands
 
@@ -291,7 +291,7 @@ DIAAD automates as much as possible. Below are descriptions of automatability an
 
 ## Automation Validation
 
-DIAAD includes CLI utilities to validate automatic POWERS coding against manual coding.
+TAAALCR includes CLI utilities to validate automatic POWERS coding against manual coding.
 
 This workflow has two main steps:
 
@@ -323,7 +323,7 @@ Use (stratified) random sampling to create a balanced subset of samples for manu
 
 ```bash
 # Example
-diaad powers select \
+taaalcr powers select \
   --stratify site,test \
   --strata 5 \
   --seed 42
@@ -354,8 +354,8 @@ This file contains paired automatic and manual codes, restricted to the requeste
 
 ```bash
 # Example
-diaad powers validate \
-  --selection diaad_powers_select_output_250930/POWERS_validation_selection_250930_1530.xlsx \
+taaalcr powers validate \
+  --selection taaalcr_powers_select_output_250930/POWERS_validation_selection_250930_1530.xlsx \
   --numbers 1,2
 ```
 
@@ -410,8 +410,8 @@ Full details of the POWERS coding system can be found in the manual:
 
 > Herbert, R., Best, W., Hickin, J., Howard, D., & Osborne, F. (2013). Powers: Profile of word errors and retrieval in speech: An assessment tool for use with people with communication impairment. CQUniversity.
 
-If DIAAD supports your work, please cite the repo:
+If TAAALCR supports your work, please cite the repo:
 
-> McCloskey N. (2025). DIAAD: Digital Interface for Aggregate Analysis of Dialog. GitHub repository. https://github.com/nmccloskey/diaad
+> McCloskey N. (2025). TAAALCR: Toolkit for Aggregate Analysis and Alignment of Language in Conversation, for Research. GitHub repository. https://github.com/nmccloskey/taaalcr
 
 ---
