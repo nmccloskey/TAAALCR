@@ -24,13 +24,13 @@ add_src_to_sys_path()
 
 # --- TAAALCR & RASCAL imports ---
 from taaalcr.main import (
-    run_analyze_POWERS_coding,
-    run_make_POWERS_coding_files,
+    run_analyze_powers_coding,
+    run_make_powers_coding_files,
     run_analyze_digital_convo_turns,
 )
 from taaalcr.powers.automation_validation import (
-    run_reselect_POWERS_reliability_coding,
-    run_evaluate_POWERS_reliability,
+    run_reselect_powers_reliability_coding,
+    run_evaluate_powers_reliability,
 )
 from rascal.run_wrappers import run_read_tiers, run_read_cha_files, run_prepare_utterance_dfs
 
@@ -87,8 +87,8 @@ if config and uploaded_files:
         frac = config.get("reliability_fraction", 0.2)
         coders = config.get("coders", []) or []
         exclude_participants = config.get("exclude_participants", []) or []
-        automate_POWERS = config.get("automate_POWERS", True)
-        just_c2_POWERS = config.get("just_c2_POWERS", False)
+        automate_powers = config.get("automate_powers", True)
+        just_c2_powers = config.get("just_c2_powers", False)
 
         # --- Step 3: Select analysis type ---
         st.header("3️⃣ Select Function")
@@ -112,18 +112,18 @@ if config and uploaded_files:
             elif "Make POWERS" in choice:
                 chats = run_read_cha_files(input_dir)
                 run_prepare_utterance_dfs(tiers, chats, output_dir)
-                run_make_POWERS_coding_files(
-                    tiers, frac, coders, input_dir, output_dir, exclude_participants, automate_POWERS
+                run_make_powers_coding_files(
+                    tiers, frac, coders, input_dir, output_dir, exclude_participants, automate_powers
                 )
 
             elif "Analyze POWERS" in choice:
-                run_analyze_POWERS_coding(input_dir, out_dir, just_c2_POWERS)
+                run_analyze_powers_coding(input_dir, out_dir, just_c2_powers)
 
             elif "Evaluate POWERS" in choice:
-                run_evaluate_POWERS_reliability(input_dir, out_dir)
+                run_evaluate_powers_reliability(input_dir, out_dir)
 
             elif "Reselect POWERS" in choice:
-                run_reselect_POWERS_reliability_coding(input_dir, out_dir, frac, exclude_participants, automate_POWERS)
+                run_reselect_powers_reliability_coding(input_dir, out_dir, frac, exclude_participants, automate_powers)
 
             st.success("✅ Analysis complete!")
             zip_data = zip_folder(out_dir)
