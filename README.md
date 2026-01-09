@@ -402,6 +402,8 @@ I warmly welcome feedback, feature suggestions, or bug reports. Feel free to rea
 
 Thanks for your interest and collaboration!
 
+*(This project was previously developed under the working name “DIAAD”; the rename reflects a clarified scope and focus.)*
+
 ---
 
 ## Citation & Acknowledgments
